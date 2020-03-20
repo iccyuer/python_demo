@@ -34,6 +34,6 @@ sales['地区']=areas
 sales.set_index('排名',inplace=True)
 
 # 输出excel文件
-sales.to_excel('output_' + excel_name)
+sales.to_excel('./' + sys.argv[1] + '/' + 'output_' + excel_name)
 
 print('Done!')
