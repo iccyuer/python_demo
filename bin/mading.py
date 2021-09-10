@@ -1,25 +1,19 @@
 
-
-stop_profit = 1.005   # 止盈
-buy_point = 0.995 # 买入点
+stop_profit = 1.001   # 止盈
 stop_loss = 0.9  # 止损
-first_amount = 0.003
-max_count = 4
-current_count = 0
-current_multiple = 1
 
 profit_id = None # 止盈id
 point_id = None # 买入id
 
 # 127份
 buy_points = [
-    { "1": 0.001 },
-    { "0.99": 0.002 },
-    { "0.98": 0.004 },
-    { "0.97": 0.008 },
-    { "0.95": 0.016 },
-    { "0.92": 0.032 },
-    { "0.87": 0.064 }
+    { "1": 0.02 },
+    { "0.9996": 0.02 },
+    { "0.9995": 0.04 },
+    { "0.9995": 0.08 },
+    { "0.9995": 0.16 },
+    { "0.9995": 0.32 },
+    { "0.9994": 0.64 }
 ]
 current_point_index = 0
 
@@ -27,7 +21,7 @@ def pickPosition():
     _position = exchange.GetPosition()
     #Log(_position)
     for i in range(len(_position)):
-        if _position[i]["Info"]["symbol"] == "ETHUSDT":
+        if _position[i]["Info"]["symbol"] == "BNBBUSD":
             return _position[i]
     return None
 
@@ -39,10 +33,8 @@ def checkOrder(order_id):
     return False
 
 def handOrder():
-    global stop_profit,buy_point,profit_id,point_id,current_count,max_count,current_multiple,first_amount,current_point_index
+    global stop_profit,profit_id,point_id,current_point_index
 
-    current_point_index+=1
-    if current_count > len(buy_points): return
     position = pickPosition()
     if position:
         entryPrice = float(position["Info"]["entryPrice"])
@@ -50,18 +42,25 @@ def handOrder():
         positionAmt = float(position["Info"]["positionAmt"])
 
         profit_price = float('%.2f' % (entryPrice*stop_profit)) # 止盈价
-        buy_price = float('%.2f' % (entryPrice*buy_point)) # 买入价
-
-        exchange.SetDirection("buy")
-        point_id = exchange.Buy(buy_price, positionAmt*current_multiple) # 向下挂一个买入价
-        Log('向下挂一个买入价',buy_price,positionAmt*current_multiple)
-
         exchange.SetDirection("closebuy")
         profit_id = exchange.Sell(profit_price, positionAmt) # 向上挂一个止盈价
         Log('向上挂一个止盈价',profit_price,positionAmt)
 
+        current_point_index+=1
+        if current_point_index >= len(buy_points): return
+        current_point = buy_points[current_point_index]
+        for p in current_point:
+            buy_amount = current_point[p]
+            buy_point = float(p)
+
+        buy_price = float('%.2f' % (entryPrice*buy_point)) # 买入价
+        exchange.SetDirection("buy")
+        point_id = exchange.Buy(buy_price, buy_amount) # 向下挂一个买入价
+        Log('向下挂一个买入价',buy_price,buy_amount)
+
+
 def onTick():
-    global stop_profit,buy_point,stop_loss,first_amount,max_count,current_count,current_multiple,profit_id,point_id,buy_points,current_point_index
+    global stop_profit,stop_loss,profit_id,point_id,buy_points,current_point_index
     position = pickPosition()
     LogStatus(_D(), position, profit_id, point_id)
 
@@ -86,8 +85,7 @@ def onTick():
             Log('止损',markPrice,entryPrice)
             profit_id = None
             point_id = None
-            current_count = 0
-            current_multiple = 1
+            current_point_index = 0
         if checkOrder(point_id): # 买入了
             Log('买入了',point_id)
             if profit_id:
@@ -101,12 +99,11 @@ def onTick():
             exchange.CancelOrder(point_id)
             point_id = None
         profit_id = None
-        current_count = 0
-        current_multiple = 1
+        current_point_index = 0
 
 def main():
     exchange.SetContractType("swap")
-    exchange.SetMarginLevel(1)
+    # exchange.SetMarginLevel(1)
     while True:
         onTick()
         Sleep(500)
