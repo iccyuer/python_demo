@@ -3,7 +3,10 @@ __pycache__/
 *$py.class
 __pypackages__/
 build/
+dist/
 *.log
+
+*.egg-info/
 
 .env
 .venv
