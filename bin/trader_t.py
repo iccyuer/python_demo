@@ -20,14 +20,14 @@ CONFIG.read('../config/config.ini')
 
 
 # 参数
-beginPrice = 2000
-endPrice = 5000
-distance = 8
-pointProfit = 8
+beginPrice = 400
+endPrice = 450
+distance = 1
+pointProfit = 1
 amount = 0.02
-symbol = 'ETHBUSD'
-api_key = 'BDnZnRFDUw7ABV1xq5jbMVAftjqt1fmqFyzrGdUaMAdIIGMFFAZBetNbiKQrzhkC'
-api_secret = 'NTWCKyoJLUptThe2b64ByKE7CC5Q63xKhoMAgLmoiRIKoDskvBiYvh9MMjLVS0kU'
+symbol = 'BNBBUSD'
+api_key = 'P07AGweMSPUbYdEciorS1AVCRBhcrmcFXZE4HtCPFE49cpcZ8WmXsY0Lp7QeLon0'
+api_secret = 'IMo7JeJShx8kKYFz4hhgkFgKMymXdbg5Vn1rRvene26jZo5l3b6sLC64BNBcY2RU'
 api_host = 'https://fapi.binance.com'
 leverage = 3
 
@@ -136,6 +136,7 @@ class FutureTrader:
                 account = self.getAccount() 
 
             elif check_order.get('status') == "NEW":
+                pass
                 # timestamp = time.time() - 3600 * 3
                 # if int(check_order.get('updateTime') / 1000) < timestamp:
                 #     print(arrNet[i]["id"])
