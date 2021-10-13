@@ -20,8 +20,8 @@ CONFIG.read('../config/config.ini')
 
 
 # 参数
-beginPrice = 400
-endPrice = 450
+beginPrice = 420
+endPrice = 500
 distance = 1
 pointProfit = 1
 amount = 0.02
@@ -29,7 +29,7 @@ symbol = 'BNBBUSD'
 api_key = 'P07AGweMSPUbYdEciorS1AVCRBhcrmcFXZE4HtCPFE49cpcZ8WmXsY0Lp7QeLon0'
 api_secret = 'IMo7JeJShx8kKYFz4hhgkFgKMymXdbg5Vn1rRvene26jZo5l3b6sLC64BNBcY2RU'
 api_host = 'https://fapi.binance.com'
-leverage = 3
+leverage = 5
 
 
 # redis配置
