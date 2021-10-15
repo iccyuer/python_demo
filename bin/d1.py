@@ -1,4 +1,4 @@
-from lib import PeoPle
+from lib import People
 # from ut import PeoPle
 
 # import sys
@@ -11,5 +11,5 @@ from lib import PeoPle
 if __name__ == '__main__':
     # print(DateUtil().get_today())
     # pass
-    p1 = People.PeoPle()
+    p1 = People.People()
     p1.go(2)
