@@ -20,10 +20,10 @@ CONFIG.read('../config/config.ini')
 
 
 # 参数
-beginPrice = 3800
-endPrice = 3900
-distance = 3
-pointProfit = 3
+beginPrice = 4000
+endPrice = 4300
+distance = 8
+pointProfit = 8
 amount = 0.002
 symbol = 'ETHBUSD'
 api_key = 'P07AGweMSPUbYdEciorS1AVCRBhcrmcFXZE4HtCPFE49cpcZ8WmXsY0Lp7QeLon0'
