@@ -20,8 +20,8 @@ CONFIG.read('../config/config.ini')
 
 
 # 参数
-beginPrice = 4000
-endPrice = 4400
+beginPrice = 4400
+endPrice = 4700
 distance = 8
 pointProfit = 8
 amount = 0.002
