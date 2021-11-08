@@ -111,7 +111,7 @@ class FutureTrader:
                 #下单
 
                 price = float(arrNet[i]["coverPrice"])
-                if(ticker_price > price):
+                if(ticker_price < price):
                     price = ticker_price
 
                 sell_order_params = {
