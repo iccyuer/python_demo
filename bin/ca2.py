@@ -1,3 +1,4 @@
+import math
 # 9
 # 14
 # k_list = [
@@ -20,7 +21,26 @@
 
 # EMA = [None, None, None, None, None, None, None, None, 58044.11444444445, 57889.33955555556, 57783.04164444445, 57645.01531555556, 57557.012252444445, 57412.82780195556]
 
-k_list = [{'openTime': 1638495000000, 'open': '4519.09', 'high': '4526.63', 'low': '4510.59', 'close': '4510.82', 'volume': '783.746', 'closeTime': 1638495899999, 'quoteAssetVolume': '3540639.13679', 'numTrades': 2303, 'takerBuyBaseAssetVolume': '352.237', 'takerBuyQuoteAssetVolume': '1591466.01738', 'ignore': '0'}, {'openTime': 1638495900000, 'open': '4510.82', 'high': '4525.30', 'low': '4503.60', 'close': '4519.27', 'volume': '1370.059', 'closeTime': 1638496799999, 'quoteAssetVolume': '6183557.70520', 'numTrades': 3173, 'takerBuyBaseAssetVolume': '775.020', 'takerBuyQuoteAssetVolume': '3497662.27678', 'ignore': '0'}, {'openTime': 1638496800000, 'open': '4519.58', 'high': '4527.40', 'low': '4509.89', 'close': '4522.84', 'volume': '920.688', 'closeTime': 1638497699999, 'quoteAssetVolume': '4161160.29047', 'numTrades': 2530, 'takerBuyBaseAssetVolume': '419.643', 'takerBuyQuoteAssetVolume': '1895992.44129', 'ignore': '0'}, {'openTime': 1638497700000, 'open': '4524.14', 'high': '4532.41', 'low': '4517.08', 'close': '4519.20', 'volume': '1130.234', 'closeTime': 1638498599999, 'quoteAssetVolume': '5114470.19825', 'numTrades': 2445, 'takerBuyBaseAssetVolume': '606.639', 'takerBuyQuoteAssetVolume': '2745195.85604', 'ignore': '0'}, {'openTime': 1638498600000, 'open': '4519.12', 'high': '4525.45', 'low': '4479.24', 'close': '4481.68', 'volume': '2471.683', 'closeTime': 1638499499999, 'quoteAssetVolume': '11118469.80573', 'numTrades': 6421, 'takerBuyBaseAssetVolume': '999.357', 'takerBuyQuoteAssetVolume': '4495977.86403', 'ignore': '0'}, {'openTime': 1638499500000, 'open': '4481.68', 'high': '4495.18', 'low': '4472.88', 'close': '4493.37', 'volume': '2255.381', 'closeTime': 1638500399999, 'quoteAssetVolume': '10112091.93591', 'numTrades': 5835, 'takerBuyBaseAssetVolume': '1145.372', 'takerBuyQuoteAssetVolume': '5135338.52243', 'ignore': '0'}, {'openTime': 1638500400000, 'open': '4493.44', 'high': '4498.92', 'low': '4484.48', 'close': '4493.53', 'volume': '1237.337', 'closeTime': 1638501299999, 'quoteAssetVolume': '5558019.89045', 'numTrades': 2547, 'takerBuyBaseAssetVolume': '672.541', 'takerBuyQuoteAssetVolume': '3020719.95488', 'ignore': '0'}, {'openTime': 1638501300000, 'open': '4493.18', 'high': '4499.45', 'low': '4481.68', 'close': '4498.88', 'volume': '1130.892', 'closeTime': 1638502199999, 'quoteAssetVolume': '5079174.07316', 'numTrades': 2861, 'takerBuyBaseAssetVolume': '526.457', 'takerBuyQuoteAssetVolume': '2364319.20643', 'ignore': '0'}, {'openTime': 1638502200000, 'open': '4498.87', 'high': '4526.02', 'low': '4493.57', 'close': '4507.40', 'volume': '2244.531', 'closeTime': 1638503099999, 'quoteAssetVolume': '10136624.33083', 'numTrades': 5542, 'takerBuyBaseAssetVolume': '1174.758', 'takerBuyQuoteAssetVolume': '5304920.52116', 'ignore': '0'}, {'openTime': 1638503100000, 'open': '4506.98', 'high': '4508.83', 'low': '4495.82', 'close': '4496.01', 'volume': '1359.376', 'closeTime': 1638503999999, 'quoteAssetVolume': '6120310.17576', 'numTrades': 3297, 'takerBuyBaseAssetVolume': '722.859', 'takerBuyQuoteAssetVolume': '3254295.99230', 'ignore': '0'}, {'openTime': 1638504000000, 'open': '4496.44', 'high': '4516.75', 'low': '4492.70', 'close': '4516.58', 'volume': '1155.687', 'closeTime': 1638504899999, 'quoteAssetVolume': '5205800.34926', 'numTrades': 3357, 'takerBuyBaseAssetVolume': '645.392', 'takerBuyQuoteAssetVolume': '2907303.48333', 'ignore': '0'}, {'openTime': 1638504900000, 'open': '4516.76', 'high': '4532.84', 'low': '4515.01', 'close': '4528.71', 'volume': '1653.762', 'closeTime': 1638505799999, 'quoteAssetVolume': '7482757.57166', 'numTrades': 4042, 'takerBuyBaseAssetVolume': '834.294', 'takerBuyQuoteAssetVolume': '3774708.18581', 'ignore': '0'}, {'openTime': 1638505800000, 'open': '4528.75', 'high': '4540.58', 'low': '4520.29', 'close': '4540.29', 'volume': '1324.051', 'closeTime': 1638506699999, 'quoteAssetVolume': '5996420.97579', 'numTrades': 3081, 'takerBuyBaseAssetVolume': '693.196', 'takerBuyQuoteAssetVolume': '3139309.74861', 'ignore': '0'}, {'openTime': 1638506700000, 'open': '4540.29', 'high': '4544.23', 'low': '4529.72', 'close': '4534.20', 'volume': '1773.594', 'closeTime': 1638507599999, 'quoteAssetVolume': '8048831.78574', 'numTrades': 4605, 'takerBuyBaseAssetVolume': '921.112', 'takerBuyQuoteAssetVolume': '4180081.71643', 'ignore': '0'}, {'openTime': 1638507600000, 'open': '4534.03', 'high': '4540.97', 'low': '4528.35', 'close': '4533.57', 'volume': '1051.521', 'closeTime': 1638508499999, 'quoteAssetVolume': '4766718.50511', 'numTrades': 2483, 'takerBuyBaseAssetVolume': '456.292', 'takerBuyQuoteAssetVolume': '2068531.95353', 'ignore': '0'}, {'openTime': 1638508500000, 'open': '4533.57', 'high': '4534.89', 'low': '4518.10', 'close': '4520.58', 'volume': '914.808', 'closeTime': 1638509399999, 'quoteAssetVolume': '4140798.90012', 'numTrades': 2924, 'takerBuyBaseAssetVolume': '443.953', 'takerBuyQuoteAssetVolume': '2009460.41252', 'ignore': '0'}, {'openTime': 1638509400000, 'open': '4520.24', 'high': '4576.11', 'low': '4520.00', 'close': '4574.31', 'volume': '2601.185', 'closeTime': 1638510299999, 'quoteAssetVolume': '11844558.32865', 'numTrades': 6869, 'takerBuyBaseAssetVolume': '1465.298', 'takerBuyQuoteAssetVolume': '6670152.79385', 'ignore': '0'}, {'openTime': 1638510300000, 'open': '4574.12', 'high': '4580.00', 'low': '4559.39', 'close': '4573.68', 'volume': '2620.868', 'closeTime': 1638511199999, 'quoteAssetVolume': '11979451.28674', 'numTrades': 6255, 'takerBuyBaseAssetVolume': '1287.097', 'takerBuyQuoteAssetVolume': '5882877.40782', 'ignore': '0'}, {'openTime': 1638511200000, 'open': '4574.16', 'high': '4595.48', 'low': '4567.92', 'close': '4568.54', 'volume': '2479.156', 'closeTime': 1638512099999, 'quoteAssetVolume': '11361513.32728', 'numTrades': 6159, 'takerBuyBaseAssetVolume': '1230.734', 'takerBuyQuoteAssetVolume': '5640839.44367', 'ignore': '0'}, {'openTime': 1638512100000, 'open': '4568.55', 'high': '4572.30', 'low': '4565.76', 'close': '4565.77', 'volume': '236.558', 'closeTime': 1638512999999, 'quoteAssetVolume': '1080858.78514', 'numTrades': 567, 'takerBuyBaseAssetVolume': '134.802', 'takerBuyQuoteAssetVolume': '615929.73308', 'ignore': '0'}]
+# [None, None, None, None, None, None, None, None, 48829.40444444444, 48962.26333333333, 49052.522222222215, 49086.98555555555]
+# [None, None, None, None, None, None, None, None, 48829.40444444444, 48868.06555555555, 48905.84644444444, 48960.931155555554]
+
+# [None, None, None, None, None, None, None, None, 49771.194241850826, 49583.848032987735, 49411.52891566372, 49428.853326499055]  MA+2*
+# [None, None, None, None, None, None, None, None, 48829.40444444444, 48962.263333333336, 49052.522222222215, 49086.985555555555]  MA
+# [None, None, None, None, None, None, None, None, 47887.61464703805, 48340.67863367894, 48693.51552878071, 48745.117784612055] MA-2*
+
+k_list = [
+{'Time': 1638633600000, 'Open': 48201.53, 'High': 48477.6, 'Low': 47777.03, 'Close': 47826.98, 'Volume': 2269.94419, 'OpenInterest': 0.0}, 
+{'Time': 1638637200000, 'Open': 47847.77, 'High': 48370.51, 'Low': 47787.31, 'Close': 48244.64, 'Volume': 1460.58227, 'OpenInterest': 0.0}, 
+{'Time': 1638640800000, 'Open': 48238.47, 'High': 48872.21, 'Low': 48158.03, 'Close': 48871.1, 'Volume': 1821.40053, 'OpenInterest': 0.0}, 
+{'Time': 1638644400000, 'Open': 48875.83, 'High': 49444.0, 'Low': 48636.69, 'Close': 49250.0, 'Volume': 2220.94398, 'OpenInterest': 0.0}, 
+{'Time': 1638648000000, 'Open': 49250.0, 'High': 49479.99, 'Low': 48958.15, 'Close': 49254.67, 'Volume': 2061.54535, 'OpenInterest': 0.0}, 
+{'Time': 1638651600000, 'Open': 49257.51, 'High': 49353.17, 'Low': 48499.81, 'Close': 48694.63, 'Volume': 1507.86582, 'OpenInterest': 0.0}, 
+{'Time': 1638655200000, 'Open': 48704.29, 'High': 49285.17, 'Low': 48606.71, 'Close': 49207.85, 'Volume': 1038.1672, 'OpenInterest': 0.0}, 
+{'Time': 1638658800000, 'Open': 49207.84, 'High': 49485.97, 'Low': 48830.72, 'Close': 49167.04, 'Volume': 1400.63961, 'OpenInterest': 0.0}, 
+{'Time': 1638662400000, 'Open': 49159.14, 'High': 49683.05, 'Low': 48326.32, 'Close': 48947.73, 'Volume': 3066.59031, 'OpenInterest': 0.0}, 
+{'Time': 1638666000000, 'Open': 48938.66, 'High': 49235.77, 'Low': 48645.0, 'Close': 49022.71, 'Volume': 1242.54712, 'OpenInterest': 0.0}, 
+{'Time': 1638669600000, 'Open': 49030.97, 'High': 49110.99, 'Low': 48797.46, 'Close': 49056.97, 'Volume': 1052.09858, 'OpenInterest': 0.0}, 
+{'Time': 1638673200000, 'Open': 49052.69, 'High': 49370.95, 'Low': 48844.17, 'Close': 49181.27, 'Volume': 1174.80203, 'OpenInterest': 0.0}]
 
 
 
@@ -36,23 +56,56 @@ def c_ma(data,interval,price='Close'):
         MA.append(float('%.3f'% (total/interval)))
     return MA
 
-MA = c_ma(k_list,9,'close')
+MA = c_ma(k_list,9,'Close')
 print(MA)
 
-def c_ema(data,ma,interval,price='Close'):
-    EMA = []
-    a = 2/(interval+1)
-    firseEMA = False
+# def c_ema(data,ma,interval,price='Close'):
+#     EMA = []
+#     a = 2/(interval+1)
+#     firseEMA = False
+#     for i in range(len(ma)):
+#         if ma[i]>0:
+#             if not firseEMA:
+#                 firseEMA = True
+#                 EMA.append(ma[i])
+#             else:
+#                 EMA.append(float('%.3f'% (a*float(data[i][price])+(1-a)*EMA[i-1])))
+#         else:
+#             EMA.append(ma[i])
+#     return EMA
+
+# EMA = c_ema(k_list,MA,9,'Close')
+# print(EMA)
+
+def c_bb(data,ma,interval,interval2 = 2,price='Close'):
+    stdev = []
+    up = []
+    down = []
     for i in range(len(ma)):
         if ma[i]>0:
-            if not firseEMA:
-                firseEMA = True
-                EMA.append(ma[i])
-            else:
-                EMA.append(float('%.3f'% (a*float(data[i][price])+(1-a)*EMA[i-1])))
+            sum = 0
+            for j in range(interval):
+                sum+=math.pow((float(data[i-j][price])-ma[i]),2)
+            stdev.append(float(math.sqrt(sum/interval)))
         else:
-            EMA.append(ma[i])
-    return EMA
+            stdev.append(0.0)
+        up.append(float('%.3f'% (ma[i]+interval2*(stdev[i]))))
+        down.append(float('%.3f'% (ma[i]-interval2*(stdev[i]))))
+    return [up,ma,down]
 
-EMA = c_ema(k_list,MA,9,'close')
-print(EMA)
+# stdev = []
+# for i in range(len(MA)):
+#     if MA[i]>0:
+#         sum = 0
+#         for j in range(9):
+#             sum+=math.pow((float(k_list[i-j]['Close'])-MA[i]),2)
+#         stdev.append(float(math.sqrt(sum/9)))
+#     else:
+#         stdev.append(0)
+
+# print(stdev)
+
+bb = c_bb(k_list,MA,9)
+print(bb[0])
+print(bb[1])
+print(bb[2])
