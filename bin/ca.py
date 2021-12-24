@@ -68,7 +68,7 @@ def c_bb(data,ma,interval,interval2 = 2,price='Close'):
         down.append(float('%.3f'% (ma[i]-interval2*(stdev[i]))))
     return [up,ma,down]
 
-bb = c_bb(k_list,MA,9)
+bb = c_bb(k_list,MA,9,2,'close')
 print(bb[0])
 print(bb[1])
 print(bb[2])

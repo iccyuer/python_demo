@@ -106,6 +106,37 @@ def c_bb(data,ma,interval,interval2 = 2,price='Close'):
 # print(stdev)
 
 bb = c_bb(k_list,MA,9)
-print(bb[0])
-print(bb[1])
-print(bb[2])
+print(bb[0][-1])
+print(bb[1][-1])
+print(bb[2][-1])
+
+
+
+symbol = "ETHBUSD"
+k_interval = "1h"  #k线周期 1m 3m 5m 15m 30m 1h 2h 4h 6h 8h 12h 1d 3d 1w 1M
+boll_interval = 9 #布林周期
+stddev = 2 # 标准差系数
+def BOLL(self,price='close'):
+    result = self.http_client.get_candlestick_data(symbol=symbol, interval=k_interval, startTime=None, endTime=None, limit=boll_interval)
+    k_list = self.tojson(result)
+    MA = []
+    UP = []
+    DOWN = []
+    for i in range(len(k_list)):
+        total = 0
+        for j in range(boll_interval):
+            if (i-boll_interval+1) >=0:
+                total+=float(k_list[i-j][price])
+            else:
+                break
+        MA.append(float('%.3f'% (total/boll_interval)))
+        if MA[i]>0:
+            sum = 0
+            for k in range(boll_interval):
+                sum+=math.pow((float(k_list[i-k][price])-MA[i]),2)
+            std = float(math.sqrt(sum/boll_interval))
+        else:
+            std = 0.0
+        UP.append(float('%.3f'% (MA[i]+stddev*std)))
+        DOWN.append(float('%.3f'% (MA[i]-stddev*std)))
+    return [UP,MA,DOWN]

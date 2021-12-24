@@ -12,6 +12,8 @@ setup(
     install_requires=[
         'requests',
         'redis',
-        'binance-futures'
+        'binance-futures',
+        'pyecharts',
+        'jieba'
     ]
 )
