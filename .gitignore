@@ -5,7 +5,7 @@ __pypackages__/
 build/
 dist/
 *.log
-
+.DS_Store
 *.egg-info/
 
 .env
